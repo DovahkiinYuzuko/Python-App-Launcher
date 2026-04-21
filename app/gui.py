@@ -136,7 +136,7 @@ class FileItemFrame(ctk.CTkFrame):
         self.py_label = ctk.CTkLabel(self.details_row, text=self.i18n.get("label_python"), text_color=COLOR_TEXT_MUTED, font=ctk.CTkFont(family=self.font_family, size=10))
         self.py_label.grid(row=0, column=0, padx=(10, 2), pady=5)
         
-        current_py = file_data.get("custom_python", sys.executable)
+        current_py = file_data.get("custom_python") or sys.executable
         if current_py and not str(current_py).startswith("Python "):
             for py_str in self.python_list:
                 if f"({str(current_py).lower()})" in py_str.lower():
@@ -223,6 +223,8 @@ class FileItemFrame(ctk.CTkFrame):
 
     def _format_py_path(self, path_str: str, max_len: int = 40) -> str:
         """Python パス文字列を短縮フォーマットする。"""
+        if not path_str:
+            return "Unknown"
         if len(path_str) <= max_len:
             return path_str
         # 'Python 3.10.0 (C:\...)' 形式を想定
