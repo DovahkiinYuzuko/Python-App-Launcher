@@ -1,0 +1,11 @@
+customtkinter
+packaging
+pyinstaller
+psutil
+pystray
+plyer
+Pillow
+python-dotenv
+py-cpuinfo
+GPUtil
+# ログ監視やプロセス管理は標準ライブラリ (subprocess, threading, json, pathlib) で対応
